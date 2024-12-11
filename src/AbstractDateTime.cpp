@@ -35,3 +35,8 @@ Timespan operator-(const AbstractDateTime& first,
 
     return makeTimespan(miliseconds);
 }
+
+bool operator==(const AbstractDateTime& first,
+                const AbstractDateTime& second) noexcept {
+    return first->miliseconds == second->miliseconds;
+}

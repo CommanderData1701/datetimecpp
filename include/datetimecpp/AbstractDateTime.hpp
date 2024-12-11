@@ -38,6 +38,20 @@ public:
     friend Timespan operator-(const AbstractDateTime& first,
                               const AbstractDateTime& second) noexcept;
 
+    friend bool operator==(const AbstractDateTime& first,
+                           const AbstractDateTime& second) noexcept;
+
+    friend bool operator<=(const AbstractDateTime& first,
+                           const AbstractDateTime& second) noexcept;
+    
+    friend bool operator>=(const AbstractDateTime& first,
+                           const AbstractDateTime& second) noexcept;
+
+    friend bool operator<(const AbstractDateTime& first,
+                          const AbstractDateTime& second) noexcept;
+
+    friend bool operator>(const AbstractDateTime& first,
+                          const AbstractDateTime& second) noexcept;
 protected:
     AbstractDateTimeIMPL() noexcept;
 
