@@ -21,30 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#ifndef ABSTRACT_DATE_TIME_HPP
-#define ABSTRACT_DATE_TIME_HPP
+#ifndef OPERATIONS_HPP
+#define OPERATIONS_HPP
 
-#include <memory>
-#include <string>
-#include <ctime>
+#include "datetimecpp/AbstractDateTime.hpp"
 
-#include "Timespan.hpp"
+Timespan calculateDistance(AbstractDateTime datetime1,
+                           AbstractDateTime datetime2) noexcept;
 
-class AbstractDateTimeIMPL;
-typedef std::shared_ptr<AbstractDateTimeIMPL> AbstractDateTime;
-
-class AbstractDateTimeIMPL {
-public:
-    friend Timespan calculateDistance(AbstractDateTime datetime1,
-                                      AbstractDateTime datetime2) noexcept;
-protected:
-    AbstractDateTimeIMPL() noexcept;
-
-    virtual void setAttributes() noexcept = 0;
-
-    virtual std::string toString() const noexcept = 0;
-
-    std::time_t miliseconds;
-};
-
-#endif  // ABSTRACT_DATE_TIME_HPP
+#endif  // OPERATIONS_HPP
