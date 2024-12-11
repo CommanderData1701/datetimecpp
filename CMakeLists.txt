@@ -2,28 +2,28 @@ cmake_minimum_required(VERSION 3.16)
 project(datetimecpp
     VERSION         1.0
     LANGUAGES       CXX
-    DESCRITPTION    "A datetime library for C++"
+    DESCRIPTION     "A datetime library for C++"
 )
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -Wall -Wextra --pedantic -Wno-unused-parameter")
 
 ################################################################################
 #                       Setting library name                                   #
 ################################################################################
-add_library(${PROJECT_NAME} PRIVATE
+add_library(${PROJECT_NAME}
     src/Timespan.cpp
 )
+
+add_compile_options(-Wall -Wextra --pedantic -Wno-unused-parameter)
 
 ################################################################################
 #                       Setting include directories                            #
 ################################################################################
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SPURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
 
@@ -44,7 +44,7 @@ install(EXPORT  ${PROJECT_NAME}Targets
 )
 
 configure_package_config_file(
-    cmake/argsConfig.cmake.in
+    cmake/${PROJECT_NAME}Config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )

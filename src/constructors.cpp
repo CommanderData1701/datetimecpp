@@ -21,13 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#ifndef DATE_TIME_HPP
-#define DATE_TIME_HPP
+#include "util/constructors.hpp"
 
-#include "AbstractDateTime.hpp"
-
-class DateTime : public AbstractDateTime {
-
-};
-
-#endif  // DATE_TIME_HPP
+Timespan makeTimespan(unsigned int miliseconds) {
+    return Timespan(new TimespanIMPL(miliseconds));
+}
