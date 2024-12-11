@@ -21,32 +21,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#include "datetimecpp/Timespan.hpp"
+#ifndef ABSTRACT_DATE_TIME_HPP
+#define ABSTRACT_DATE_TIME_HPP
 
-TimespanIMPL::TimespanIMPL(unsigned int miliseconds) noexcept {
-    this->miliseconds = miliseconds;
-}
+#include <memory>
+#include <string>
+#include <ctime>
 
-double TimespanIMPL::getYears() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_YEAR;
-}
+#include "Timespan.hpp"
 
-double TimespanIMPL::getMonths() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_MONTH;
-}
+class AbstractDateTimeIMPL;
+typedef std::shared_ptr<AbstractDateTimeIMPL> AbstractDateTime;
 
-double TimespanIMPL::getHours() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_AN_HOUR;
-}
+class AbstractDateTimeIMPL {
+public:
+    friend Timespan calculateDistance(AbstractDateTime datetime1,
+                                      AbstractDateTime datetime2);
+protected:
+    AbstractDateTimeIMPL() noexcept;
 
-double TimespanIMPL::getMinutes() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_MINUTE;
-}
+    virtual void setAttributes() noexcept = 0;
 
-double TimespanIMPL::getSeconds() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_SECOND;
-}
+    virtual std::string toString() const noexcept = 0;
 
-unsigned int TimespanIMPL::getMiliseconds() const noexcept {
-    return this->miliseconds;
-}
+    std::time_t miliseconds;
+};
+
+#endif  // ABSTRACT_DATE_TIME_HPP

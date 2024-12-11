@@ -24,7 +24,7 @@ SOFTWARE.
 #ifndef CONSTRUCTORS_HPP
 #define CONSTRUCTORS_HPP
 
-#include "datetime/Timespan.hpp"
+#include "datetimecpp/Timespan.hpp"
 
 Timespan makeTimespan(unsigned int miliseconds);
 

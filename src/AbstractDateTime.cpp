@@ -21,32 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#include "datetimecpp/Timespan.hpp"
+#include "datetimecpp/AbstractDateTime.hpp"
 
-TimespanIMPL::TimespanIMPL(unsigned int miliseconds) noexcept {
-    this->miliseconds = miliseconds;
-}
-
-double TimespanIMPL::getYears() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_YEAR;
-}
-
-double TimespanIMPL::getMonths() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_MONTH;
-}
-
-double TimespanIMPL::getHours() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_AN_HOUR;
-}
-
-double TimespanIMPL::getMinutes() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_MINUTE;
-}
-
-double TimespanIMPL::getSeconds() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_SECOND;
-}
-
-unsigned int TimespanIMPL::getMiliseconds() const noexcept {
-    return this->miliseconds;
+AbstractDateTimeIMPL::AbstractDateTimeIMPL() noexcept {
+    this->miliseconds = std::time(nullptr);
 }

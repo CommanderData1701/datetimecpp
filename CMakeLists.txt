@@ -14,6 +14,8 @@ set(CMAKE_CXX_STANDARD 17)
 ################################################################################
 add_library(${PROJECT_NAME}
     src/Timespan.cpp
+
+    src/constructors.cpp
 )
 
 add_compile_options(-Wall -Wextra --pedantic -Wno-unused-parameter)
