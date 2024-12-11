@@ -25,6 +25,7 @@ SOFTWARE.
 #define TIMESPAN_HPP
 
 #include <cmath>
+#include <ctime>
 #include <memory>
 
 class TimespanIMPL;
@@ -40,7 +41,7 @@ public:
      * @param miliseconds Miliseconds representing the timespan.
      * @return Constructed Timespan object
      */
-    friend Timespan makeTimespan(unsigned int miliseconds);
+    friend Timespan makeTimespan(std::time_t miliseconds) noexcept;
 
     /**
      * <p>
@@ -110,14 +111,14 @@ public:
     unsigned int getMiliseconds() const noexcept;
 
 #ifdef PUBLIC_CONSTRUCTORS
-    Timespan(unsigned int miliseconds) noexcept;
+    Timespan(std::time_t miliseconds) noexcept;
 private:
 #else
 private:
-    TimespanIMPL(unsigned int miliseconds) noexcept;
+    TimespanIMPL(std::time_t miliseconds) noexcept;
 #endif  // PUBLIC_CONSTRUCTORS
     
-    unsigned int miliseconds;
+    std::time_t miliseconds;
 
     static constexpr double MILISECONDS_IN_A_YEAR = 3.154e+10;
     static constexpr double MILISECONDS_IN_A_MONTH = 2.628e+9;
@@ -126,5 +127,7 @@ private:
     static constexpr double MILISECONDS_IN_A_MINUTE = 60000;
     static constexpr double MILISECONDS_IN_A_SECOND = 1000;
 };
+
+Timespan makeTimespan(std::time_t miliseconds) noexcept;
 
 #endif  // TIMESPAN_HPP

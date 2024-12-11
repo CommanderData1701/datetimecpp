@@ -23,8 +23,12 @@ SOFTWARE.
 */
 #include "datetimecpp/Timespan.hpp"
 
-TimespanIMPL::TimespanIMPL(unsigned int miliseconds) noexcept {
+TimespanIMPL::TimespanIMPL(std::time_t miliseconds) noexcept {
     this->miliseconds = miliseconds;
+}
+
+Timespan makeTimespan(std::time_t miliseconds) noexcept {
+    return Timespan(new TimespanIMPL(miliseconds));
 }
 
 double TimespanIMPL::getYears() const noexcept {

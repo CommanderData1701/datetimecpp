@@ -35,10 +35,13 @@ typedef std::shared_ptr<AbstractDateTimeIMPL> AbstractDateTime;
 
 class AbstractDateTimeIMPL {
 public:
-    friend Timespan calculateDistance(AbstractDateTime datetime1,
-                                      AbstractDateTime datetime2) noexcept;
+    friend Timespan operator-(const AbstractDateTime& first,
+                              const AbstractDateTime& second) noexcept;
+
 protected:
     AbstractDateTimeIMPL() noexcept;
+
+    AbstractDateTimeIMPL(std::time_t miliseconds);
 
     virtual void setAttributes() noexcept = 0;
 

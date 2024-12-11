@@ -15,9 +15,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_library(${PROJECT_NAME}
     src/AbstractDateTime.cpp
     src/Timespan.cpp
-
-    src/constructors.cpp
-    src/operations.cpp
 )
 
 add_compile_options(-Wall -Wextra --pedantic -Wno-unused-parameter)

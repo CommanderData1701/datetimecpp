@@ -26,3 +26,12 @@ SOFTWARE.
 AbstractDateTimeIMPL::AbstractDateTimeIMPL() noexcept {
     this->miliseconds = std::time(nullptr);
 }
+
+Timespan operator-(const AbstractDateTime& first,
+                   const AbstractDateTime& second) noexcept {
+    std::time_t miliseconds = first->miliseconds < second->miliseconds ?
+        second->miliseconds - first->miliseconds :
+        first->miliseconds - second->miliseconds;
+
+    return makeTimespan(miliseconds);
+}
