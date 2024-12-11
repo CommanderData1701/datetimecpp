@@ -28,6 +28,10 @@ SOFTWARE.
 
 #include "AbstractDateTime.hpp"
 #include "Timespan.hpp"
+
+/**
+ * Class representing DateTime objects.
+ */
 class LocalDateTimeIMPL;
 typedef std::shared_ptr<LocalDateTimeIMPL> LocalDateTime;
 
@@ -35,13 +39,7 @@ class LocalDateTimeIMPL final : public AbstractDateTimeIMPL {
 public:
     friend LocalDateTime makeLokalDateTime() noexcept;
 
-    friend LocalDateTime makeLokalDateTime(std::time_t miliseconds) noexcept;
-
-    friend LocalDateTime operator+(Timespan span,
-                                   AbstractDateTime dt) noexcept;
-
-    friend LocalDateTime operator+(AbstractDateTime dt,
-                                   Timespan span) noexcept;
+    friend LocalDateTime makeLokalDateTime(std::time_t seconds) noexcept;
 
     std::string toString() const noexcept override;
 
@@ -50,13 +48,19 @@ public:
     LocalDateTime setMonth(int month) noexcept;
 
     LocalDateTime setDay(int day) noexcept;
+
+    LocalDateTime setHour(int hour) noexcept;
+
+    LocalDateTime setMinute(int minute) noexcept;
+
+    LocalDateTime setSecond(int second) noexcept;
 private:
     LocalDateTimeIMPL() noexcept;
 
     LocalDateTimeIMPL(std::time_t miliseconds) noexcept;
 
     void setAttributes() noexcept override;
-    void setMiliseconds() noexcept override;
+    void setAbsoluteSeconds() noexcept override;
 
     int year;
     int month;
@@ -65,5 +69,15 @@ private:
     int minute;
     int seconds;
 };
+
+LocalDateTime makeLocalDateTime() noexcept;
+
+LocalDateTime makeLocalDateTime(std::time_t seconds) noexcept;
+
+LocalDateTime operator+(const Timespan& span,
+                        const AbstractDateTime& dt) noexcept;
+
+LocalDateTime operator+(const AbstractDateTime& dt,
+                        const Timespan& span) noexcept;
 
 #endif  // DATE_TIME_HPP
