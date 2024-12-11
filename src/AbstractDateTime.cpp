@@ -29,7 +29,7 @@ AbstractDateTimeIMPL::AbstractDateTimeIMPL() noexcept {
 
 Timespan operator-(const AbstractDateTime& first,
                    const AbstractDateTime& second) noexcept {
-    std::time_t miliseconds = first->miliseconds < second->miliseconds ?
+    std::time_t miliseconds = first < second ?
         second->miliseconds - first->miliseconds :
         first->miliseconds - second->miliseconds;
 
@@ -39,4 +39,24 @@ Timespan operator-(const AbstractDateTime& first,
 bool operator==(const AbstractDateTime& first,
                 const AbstractDateTime& second) noexcept {
     return first->miliseconds == second->miliseconds;
+}
+
+bool operator<=(const AbstractDateTime& first,
+                const AbstractDateTime& second) noexcept {
+    return first->miliseconds <= second->miliseconds;
+}
+
+bool operator>=(const AbstractDateTime& first,
+                const AbstractDateTime& second) noexcept {
+    return first->miliseconds >= second->miliseconds;
+}
+
+bool operator<(const AbstractDateTime& first,
+               const AbstractDateTime& second) noexcept {
+    return first->miliseconds < second->miliseconds;
+}
+
+bool operator>(const AbstractDateTime& first,
+               const AbstractDateTime& second) noexcept {
+    return first->miliseconds > second->miliseconds;
 }

@@ -26,7 +26,7 @@ SOFTWARE.
 
 #include "AbstractDateTime.hpp"
 
-class DateTime : public AbstractDateTime {
+class LocalDateTime : public AbstractDateTime {
 
 };
 

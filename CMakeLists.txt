@@ -8,6 +8,9 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS
+"${CMAKE_CXX_FLAGS} -Wall -Wextra --pedantic -Wno-unused-parameter"
+)
 
 ################################################################################
 #                       Setting library name                                   #
@@ -16,8 +19,6 @@ add_library(${PROJECT_NAME}
     src/AbstractDateTime.cpp
     src/Timespan.cpp
 )
-
-add_compile_options(-Wall -Wextra --pedantic -Wno-unused-parameter)
 
 ################################################################################
 #                       Setting include directories                            #
