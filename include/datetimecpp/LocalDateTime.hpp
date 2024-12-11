@@ -24,10 +24,46 @@ SOFTWARE.
 #ifndef DATE_TIME_HPP
 #define DATE_TIME_HPP
 
+#include <memory>
+
 #include "AbstractDateTime.hpp"
+#include "Timespan.hpp"
+class LocalDateTimeIMPL;
+typedef std::shared_ptr<LocalDateTimeIMPL> LocalDateTime;
 
-class LocalDateTime : public AbstractDateTime {
+class LocalDateTimeIMPL final : public AbstractDateTimeIMPL {
+public:
+    friend LocalDateTime makeLokalDateTime() noexcept;
 
+    friend LocalDateTime makeLokalDateTime(std::time_t miliseconds) noexcept;
+
+    friend LocalDateTime operator+(Timespan span,
+                                   AbstractDateTime dt) noexcept;
+
+    friend LocalDateTime operator+(AbstractDateTime dt,
+                                   Timespan span) noexcept;
+
+    std::string toString() const noexcept override;
+
+    LocalDateTime setYear(int year) noexcept;
+
+    LocalDateTime setMonth(int month) noexcept;
+
+    LocalDateTime setDay(int day) noexcept;
+private:
+    LocalDateTimeIMPL() noexcept;
+
+    LocalDateTimeIMPL(std::time_t miliseconds) noexcept;
+
+    void setAttributes() noexcept override;
+    void setMiliseconds() noexcept override;
+
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int seconds;
 };
 
 #endif  // DATE_TIME_HPP

@@ -23,34 +23,30 @@ SOFTWARE.
 */
 #include "datetimecpp/Timespan.hpp"
 
-TimespanIMPL::TimespanIMPL(std::time_t miliseconds) noexcept {
-    this->miliseconds = miliseconds;
+TimespanIMPL::TimespanIMPL(std::time_t seconds) noexcept {
+    this->seconds = seconds;
 }
 
-Timespan makeTimespan(std::time_t miliseconds) noexcept {
-    return Timespan(new TimespanIMPL(miliseconds));
+Timespan makeTimespan(std::time_t seconds) noexcept {
+    return Timespan(new TimespanIMPL(seconds));
 }
 
 double TimespanIMPL::getYears() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_YEAR;
+    return 1.0 * this->seconds / SECONDS_IN_A_YEAR;
 }
 
 double TimespanIMPL::getMonths() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_MONTH;
+    return 1.0 * this->seconds / SECONDS_IN_A_MONTH;
 }
 
 double TimespanIMPL::getHours() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_AN_HOUR;
+    return 1.0 * this->seconds / SECONDS_IN_AN_HOUR;
 }
 
 double TimespanIMPL::getMinutes() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_MINUTE;
+    return 1.0 * this->seconds / SECONDS_IN_A_MINUTE;
 }
 
-double TimespanIMPL::getSeconds() const noexcept {
-    return 1.0 * this->miliseconds / MILISECONDS_IN_A_SECOND;
-}
-
-unsigned int TimespanIMPL::getMiliseconds() const noexcept {
-    return this->miliseconds;
+std::time_t TimespanIMPL::getSeconds() const noexcept {
+    return this->seconds;
 }

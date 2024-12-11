@@ -24,39 +24,47 @@ SOFTWARE.
 #include "datetimecpp/AbstractDateTime.hpp"
 
 AbstractDateTimeIMPL::AbstractDateTimeIMPL() noexcept {
-    this->miliseconds = std::time(nullptr);
+    this->absoluteSeconds = std::time(nullptr);
+}
+
+AbstractDateTimeIMPL::AbstractDateTimeIMPL(std::time_t seconds) noexcept {
+    this->absoluteSeconds = seconds;
+}
+
+std::time_t AbstractDateTimeIMPL::getAbsoluteSeconds() const noexcept {
+    return this->absoluteSeconds;
 }
 
 Timespan operator-(const AbstractDateTime& first,
                    const AbstractDateTime& second) noexcept {
-    std::time_t miliseconds = first < second ?
-        second->miliseconds - first->miliseconds :
-        first->miliseconds - second->miliseconds;
+    std::time_t seconds = first < second ?
+        second->absoluteSeconds - first->absoluteSeconds :
+        first->absoluteSeconds - second->absoluteSeconds;
 
-    return makeTimespan(miliseconds);
+    return makeTimespan(seconds);
 }
 
 bool operator==(const AbstractDateTime& first,
                 const AbstractDateTime& second) noexcept {
-    return first->miliseconds == second->miliseconds;
+    return first->absoluteSeconds == second->absoluteSeconds;
 }
 
 bool operator<=(const AbstractDateTime& first,
                 const AbstractDateTime& second) noexcept {
-    return first->miliseconds <= second->miliseconds;
+    return first->absoluteSeconds <= second->absoluteSeconds;
 }
 
 bool operator>=(const AbstractDateTime& first,
                 const AbstractDateTime& second) noexcept {
-    return first->miliseconds >= second->miliseconds;
+    return first->absoluteSeconds >= second->absoluteSeconds;
 }
 
 bool operator<(const AbstractDateTime& first,
                const AbstractDateTime& second) noexcept {
-    return first->miliseconds < second->miliseconds;
+    return first->absoluteSeconds < second->absoluteSeconds;
 }
 
 bool operator>(const AbstractDateTime& first,
                const AbstractDateTime& second) noexcept {
-    return first->miliseconds > second->miliseconds;
+    return first->absoluteSeconds > second->absoluteSeconds;
 }

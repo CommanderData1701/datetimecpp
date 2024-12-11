@@ -28,6 +28,11 @@ SOFTWARE.
 #include <ctime>
 #include <memory>
 
+/**
+ * TimespanIMPL is a proxy class which shall only be instanciated through a
+ * smart pointer. It represents a span of time with the finest granularity being
+ * seconds.
+ */
 class TimespanIMPL;
 typedef std::shared_ptr<TimespanIMPL> Timespan;
 
@@ -98,36 +103,27 @@ public:
      * @return timespanInSeconds
      * @since 1.0
      */
-    double getSeconds() const noexcept;
-
+    std::time_t getSeconds() const noexcept;
+private:
     /**
      * <p>
-     * Return the timespan in miliseconds
+     * Constructor for creating a timespan from a number of seconds.
      * </p>
      *
-     * @return timespanInMiliseconds
+     * @param seconds Timespan that shall be created in seconds
      * @since 1.0
      */
-    unsigned int getMiliseconds() const noexcept;
-
-#ifdef PUBLIC_CONSTRUCTORS
-    Timespan(std::time_t miliseconds) noexcept;
-private:
-#else
-private:
-    TimespanIMPL(std::time_t miliseconds) noexcept;
-#endif  // PUBLIC_CONSTRUCTORS
+    TimespanIMPL(std::time_t seconds) noexcept;
     
-    std::time_t miliseconds;
+    std::time_t seconds;
 
-    static constexpr double MILISECONDS_IN_A_YEAR = 3.154e+10;
-    static constexpr double MILISECONDS_IN_A_MONTH = 2.628e+9;
-    static constexpr double MILISECONDS_IN_A_DAY = 8.64e+7;
-    static constexpr double MILISECONDS_IN_AN_HOUR = 3.6e+6;
-    static constexpr double MILISECONDS_IN_A_MINUTE = 60000;
-    static constexpr double MILISECONDS_IN_A_SECOND = 1000;
+    static constexpr double SECONDS_IN_A_YEAR = 3.154e+7;
+    static constexpr double SECONDS_IN_A_MONTH = 2.628e+6;
+    static constexpr double SECONDS_IN_A_DAY = 8.64e+4;
+    static constexpr double SECONDS_IN_AN_HOUR = 3.6e+3;
+    static constexpr double SECONDS_IN_A_MINUTE = 60000;
 };
 
-Timespan makeTimespan(std::time_t miliseconds) noexcept;
+Timespan makeTimespan(std::time_t seconds) noexcept;
 
 #endif  // TIMESPAN_HPP
