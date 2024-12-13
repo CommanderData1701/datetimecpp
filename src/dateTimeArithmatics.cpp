@@ -10,7 +10,7 @@ bool isLeapYear(int year) noexcept {
     }
 }
 
-int daysInMonth(int month, int year) noexcept {
+int getDaysInMonth(int month, int year) noexcept {
     if (month == 2) {
         return isLeapYear(year) ? 29 : 28;
     } else {
