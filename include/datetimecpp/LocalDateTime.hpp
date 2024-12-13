@@ -71,8 +71,8 @@ private:
 
     LocalDateTimeIMPL(std::time_t miliseconds) noexcept;
 
-    void setAttributes() noexcept override;
-    void setAbsoluteSeconds() noexcept override;
+    virtual void setAttributes() noexcept override;
+    virtual void setAbsoluteSeconds() noexcept override;
 
     int year;
     int month;
