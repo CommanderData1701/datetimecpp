@@ -30,7 +30,7 @@ SOFTWARE.
 #include "Timespan.hpp"
 
 /**
- * Class representing DateTime objects.
+ * Class representing local DateTime objects.
  */
 class LocalDateTimeIMPL;
 typedef std::shared_ptr<LocalDateTimeIMPL> LocalDateTime;
@@ -54,6 +54,18 @@ public:
     LocalDateTime setMinute(int minute) noexcept;
 
     LocalDateTime setSecond(int second) noexcept;
+
+    int getYear() const noexcept;
+
+    int getMonth() const noexcept;
+
+    int getDay() const noexcept;
+
+    int getHour() const noexcept;
+
+    int getMinute() const noexcept;
+
+    int getSecond() const noexcept;
 private:
     LocalDateTimeIMPL() noexcept;
 

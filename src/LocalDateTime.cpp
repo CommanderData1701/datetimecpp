@@ -26,6 +26,7 @@ SOFTWARE.
 #include <sstream>
 
 #include "datetimecpp/LocalDateTime.hpp"
+#include "datetimecpp/util/dateTimeArithmatics.hpp"
 
 LocalDateTimeIMPL::LocalDateTimeIMPL() noexcept : AbstractDateTimeIMPL() {
     this->setAttributes();
@@ -120,12 +121,56 @@ LocalDateTime LocalDateTimeIMPL::setMonth(int month) noexcept {
     return LocalDateTime(this);
 }
 
-// TODO: implement
 LocalDateTime LocalDateTimeIMPL::setDay(int day) noexcept {
-    int daysInMonth;
+    int daysInMonth = getDaysInMonth(this->month, this->year);
 
     this->day = daysInMonth - std::abs(day) % daysInMonth;
     this->setAbsoluteSeconds();
 
     return LocalDateTime(this);
+}
+
+LocalDateTime LocalDateTimeIMPL::setHour(int hour) noexcept {
+    this->hour = 24 - hour % 24;
+    this->setAbsoluteSeconds();
+
+    return LocalDateTime(this);
+}
+
+LocalDateTime LocalDateTimeIMPL::setMinute(int minute) noexcept {
+    this->minute = 60 - minute % 60;
+    this->setAbsoluteSeconds();
+
+    return LocalDateTime(this);
+}
+
+LocalDateTime LocalDateTimeIMPL::setSecond(int second) noexcept {
+    this->seconds = 60 - minute % 60;
+    this->setAbsoluteSeconds();
+
+    return LocalDateTime(this);
+}
+
+int LocalDateTimeIMPL::getYear() const noexcept {
+    return this->year;
+}
+
+int LocalDateTimeIMPL::getMonth() const noexcept {
+    return this->month;
+}
+
+int LocalDateTimeIMPL::getDay() const noexcept {
+    return this->day;
+}
+
+int LocalDateTimeIMPL::getHour() const noexcept {
+    return this->hour;
+}
+
+int LocalDateTimeIMPL::getMinute() const noexcept {
+    return this->minute;
+}
+
+int LocalDateTimeIMPL::getSecond() const noexcept {
+    return this->seconds;
 }

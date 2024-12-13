@@ -16,6 +16,6 @@ bool isLeapYear(int year) noexcept;
  * @param year The year to get the number of days for.
  * @return The number of days in the month.
  */
-int daysInMonth(int month, int year) noexcept;
+int getDaysInMonth(int month, int year) noexcept;
 
 #endif  // DATE_TIME_ARITHMETICS_HPP
