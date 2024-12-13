@@ -18,6 +18,8 @@ set(CMAKE_CXX_FLAGS
 add_library(${PROJECT_NAME}
     src/AbstractDateTime.cpp
     src/Timespan.cpp
+
+    src/dateTimeArithmatics.cpp
 )
 
 ################################################################################
@@ -28,6 +30,8 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
+
+include(cmake/gtest.cmake)
 
 ################################################################################
 #                       Set installation config                                #
